@@ -87,27 +87,23 @@ export default function Home() {
       val: wpm >= 10 ? wpm : `0${wpm}`,
       icon: <FileDownloadDoneIcon />,
     });
-    console.log(Array.from(para));
+    
     setflag("");
     setpara("");
     settextarea_val("");
   };
   const accuracy = () => {
     let correct = 0;
-    let wrong = 0;
-    let var1 = Array.from(textarea_val);
-    let var2 = Array.from(para);
+   
+    let var1 = Array.from(textarea_val.match(/[a-z]+/gi));
+    let var2 = Array.from(para.match(/[a-z]+/gi));
+    
     for (let i = 0; i < var1.length; i++) {
       if (var1[i] === var2[i]) {
         correct++;
-      } else {
-        wrong++;
-        console.log(`para char -: ${var2[i]} textarea char :- ${var1[i]}`);
       }
     }
-    console.log("correct", correct);
-    console.log("wrong", wrong);
-    console.log("textlen", var1.length);
+    
     let percentage = (correct / var1.length) * 100;
     return Math.floor(percentage);
   };
@@ -166,6 +162,13 @@ export default function Home() {
     textarea_value: textarea_val,
   };
 
+
+//   const fun1 = () => {
+//   //  let var1 = Array.from(textarea_val);
+//     let var2 = Array.from(onemin[0].match(/[a-z ,+`]+/gi));
+//     console.log(var2);
+// }
+  //  fun1();
   return (
     <div>
       <Box className={classes.box}>
